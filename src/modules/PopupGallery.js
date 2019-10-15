@@ -1,8 +1,8 @@
 import Popup from './Popup';
 import Checks from './Checks';
 import {
-  API
-} from '../index';
+  GLOBAL
+} from '../Global';
 
 const popupGalleryContent = document.querySelector('.popup_add-content');
 const galleryForm = document.forms.new;
@@ -17,16 +17,19 @@ const galleryInputLink = galleryForm.elements.link;
 export default class PopupGallery extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);
+    this.openPopup = this.openPopup.bind(this);
+    this.check = this.check.bind(this);
+    this.afterSubmit = this.afterSubmit.bind(this);
   }
 
-  static openPopup() {
-    PopupGallery.check();
-    PopupGallery.open(popupGalleryContent);
+  openPopup() {
+    this.check();
+    this.open(popupGalleryContent);
   }
-  static check() {
+  check() {
     const button = galleryForm.querySelector('.popup__button');
-    const nameError = PopupGallery.errorContainer(galleryInputName);
-    const linkError = PopupGallery.errorContainer(galleryInputLink);
+    const nameError = this.errorContainer(galleryInputName);
+    const linkError = this.errorContainer(galleryInputLink);
     const nameValidate = Checks.textField(galleryInputName);
     const linkLengthValidate = Checks.textField(galleryInputLink);
     const urlValidate = Checks.urlField(galleryInputLink);
@@ -54,7 +57,7 @@ export default class PopupGallery extends Popup {
     }
   }
 
-  static afterSubmit(event) {
+  afterSubmit(event) {
     event.preventDefault();
     const name = galleryForm.elements.name;
     const link = galleryForm.elements.link;
@@ -67,8 +70,8 @@ export default class PopupGallery extends Popup {
         button.classList.add('popup__button_disabled');
         button.textContent = 'Сохранение...';
       })
-      .then(() => API.addCard(name.value, link.value))
-      .then(() => PopupGallery.close(event))
+      .then(() => GLOBAL.api.addCard(name.value, link.value))
+      .then(() => this.close(event))
       .then(() => galleryForm.reset())
       .catch((err) => console.error(err))
       .finally(() => button.textContent = '+');

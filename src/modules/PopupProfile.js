@@ -1,8 +1,8 @@
 import Popup from './Popup';
 import Checks from './Checks';
 import {
-  API
-} from '../index';
+  GLOBAL
+} from '../Global'
 
 const popupProfileContent = document.querySelector('.popup_edit-profile');
 const profileName = document.querySelector('.user-info__name');
@@ -21,27 +21,30 @@ const profileInputJob = profileForm.elements.profileJob;
 export default class PopupProfile extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);
+    this.openPopup = this.openPopup.bind(this);
+    this.check = this.check.bind(this);
+    this.afterSubmit = this.afterSubmit.bind(this);
   }
 
-  static openPopup() {
-    PopupProfile.setInputs();
-    PopupProfile.check();
-    PopupProfile.open(popupProfileContent);
+  openPopup() {
+    this.setInputs();
+    this.check();
+    this.open(popupProfileContent);
   }
 
-  static setInputs() {
+  setInputs() {
     profileInputName.value = profileName.textContent;
     profileInputJob.value = profileJob.textContent;
   }
 
-  static update() {
-    return API.setProfileInfo(profileInputName.value, profileInputJob.value);
+  update() {
+    return GLOBAL.api.setProfileInfo(profileInputName.value, profileInputJob.value);
   }
 
-  static check() {
+  check() {
     const button = profileForm.querySelector('.popup__button');
-    const nameError = PopupProfile.errorContainer(profileInputName);
-    const jobError = PopupProfile.errorContainer(profileInputJob);
+    const nameError = this.errorContainer(profileInputName);
+    const jobError = this.errorContainer(profileInputJob);
     const nameValidate = Checks.textField(profileInputName);
     const jobValidate = Checks.textField(profileInputJob);
 
@@ -66,7 +69,7 @@ export default class PopupProfile extends Popup {
     }
   }
 
-  static afterSubmit(event) {
+  afterSubmit(event) {
     event.preventDefault();
     const button = document.forms.profile.querySelector('.popup__button');
     const profilePromise = Promise.resolve();
@@ -77,8 +80,8 @@ export default class PopupProfile extends Popup {
         button.classList.add('popup__button_disabled');
         button.textContent = 'Сохранение...';
       })
-      .then(() => PopupProfile.update())
-      .then(() => PopupProfile.close(event))
+      .then(() => this.update())
+      .then(() => this.close(event))
       .catch((err) => console.error(err))
       .finally(() => button.textContent = 'Сохранить');
   }

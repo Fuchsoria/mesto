@@ -1,8 +1,8 @@
 import Popup from './Popup';
 import Checks from './Checks';
 import {
-  API
-} from '../index';
+  GLOBAL
+} from '../Global'
 
 const popupAvatarContent = document.querySelector('.popup_avatar');
 const avatarForm = document.forms.avatar;
@@ -16,15 +16,18 @@ const avatarInputLink = avatarForm.elements.link;
 export default class PopupAvatar extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);
+    this.openPopup = this.openPopup.bind(this);
+    this.check = this.check.bind(this);
   }
 
-  static openPopup() {
-    PopupAvatar.check();
-    PopupAvatar.open(popupAvatarContent);
+  openPopup() {
+    console.log(this);
+    this.check();
+    this.open(popupAvatarContent);
   }
-  static check() {
+  check() {
     const button = avatarForm.querySelector('.popup__button');
-    const linkError = PopupAvatar.errorContainer(avatarInputLink);
+    const linkError = this.errorContainer(avatarInputLink);
     const linkLengthValidate = Checks.textField(avatarInputLink);
     const urlValidate = Checks.urlField(avatarInputLink);
 
@@ -45,7 +48,7 @@ export default class PopupAvatar extends Popup {
     }
   }
 
-  static afterSubmit(event) {
+  afterSubmit(event) {
     event.preventDefault();
     const link = avatarForm.elements.link;
     const button = document.forms.avatar.querySelector('.popup__button');
@@ -57,8 +60,8 @@ export default class PopupAvatar extends Popup {
         button.classList.add('popup__button_disabled');
         button.textContent = 'Сохранение...';
       })
-      .then(() => API.setAvatar(link.value))
-      .then(() => PopupAvatar.close(event))
+      .then(() => GLOBAL.api.setAvatar(link.value))
+      .then(() => GLOBAL.popupAvatar.close(event))
       .then(() => avatarForm.reset())
       .catch((err) => console.error(err))
       .finally(() => button.textContent = 'Сохранить');

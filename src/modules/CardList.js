@@ -1,7 +1,7 @@
-import {
-  ownerId
-} from '../index';
 import Card from './Card';
+import {
+  GLOBAL
+} from '../Global';
 
 /* CardList
  * addCard добавляет карточку в массив и отправляет в рендер
@@ -29,7 +29,7 @@ export default class CardList {
         _id,
         likes
       } of cards) {
-      const isLiked = likes.some((user) => user._id === ownerId);
+      const isLiked = likes.some((user) => user._id === GLOBAL.ownerId);
       this.render({
         name,
         link,

@@ -1,7 +1,6 @@
 import {
-  ownerId,
-  API
-} from '../index';
+  GLOBAL
+} from '../Global';
 
 const cardTemplate = document.querySelector('#card-template');
 const placesList = document.querySelector('.places-list');
@@ -32,11 +31,11 @@ export default class Card {
 
     if (event.target.classList.contains('place-card__like-icon_liked')) {
       event.target.classList.remove('place-card__like-icon_liked');
-      API.removeLike(cardId)
+      GLOBAL.api.removeLike(cardId)
         .then(result => likeCount.textContent = result.likes.length);
     } else {
       event.target.classList.add('place-card__like-icon_liked');
-      API.addLike(cardId)
+      GLOBAL.api.addLike(cardId)
         .then(result => likeCount.textContent = result.likes.length);
     }
   }
@@ -44,7 +43,7 @@ export default class Card {
   static remove(event) {
     const card = event.target.closest('.place-card');
     const cardId = card.getAttribute('data-id');
-    API.removeCard(cardId);
+    GLOBAL.api.removeCard(cardId);
   }
 
   create() {
@@ -61,7 +60,7 @@ export default class Card {
     cardElement.setAttribute('data-id', this.cardId);
     cardLikes.textContent = this.likes;
 
-    if (this.ownerId === ownerId) {
+    if (this.ownerId === GLOBAL.ownerId) {
       cardElement.classList.add('place-card_own');
     }
 

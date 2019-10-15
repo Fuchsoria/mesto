@@ -1,6 +1,6 @@
 import {
   handlers
-} from '../index';
+} from '../handlers';
 import Checks from './Checks';
 /* Popup
  * open открытие popup по ноде и запуск обработчиков
@@ -8,7 +8,7 @@ import Checks from './Checks';
  * errorContainer возвращает контейнер для отображения ошибок
  */
 export default class Popup {
-  static open(popupNode) {
+  open(popupNode) {
     const popupName = popupNode.getAttribute('popupname');
     popupNode.classList.add('popup_is-opened');
     handlers.addPopupClose(popupNode);
@@ -22,7 +22,7 @@ export default class Popup {
     }
   }
 
-  static close(event, popupNode = Checks.currentNode(event)) {
+  close(event, popupNode = Checks.currentNode(event)) {
     const popupName = popupNode.getAttribute('popupname');
     popupNode.classList.remove('popup_is-opened');
     handlers.removePopupClose(popupNode);
@@ -36,7 +36,7 @@ export default class Popup {
     }
   }
 
-  static errorContainer(target) {
+  errorContainer(target) {
     return target.closest('.label').querySelector('.input__error');
   }
 }

@@ -1,17 +1,10 @@
-import {
-  cardList
-} from '../index';
-
-
-const profileName = document.querySelector('.user-info__name');
-const profileJob = document.querySelector('.user-info__job');
-const profilePhoto = document.querySelector('.user-info__photo');
-
-
 export default class Api {
-  constructor(options) {
+  constructor(options, elements) {
     this.baseUrl = options.baseUrl;
     this.headers = options.headers;
+    this.profileName = elements.name;
+    this.profileJob = elements.job;
+    this.profilePhoto = elements.photo;
   }
 
   checkStatus(res) {
@@ -22,12 +15,13 @@ export default class Api {
     return console.error(err);
   }
 
-  getInitialCards() {
+  getInitialCards(cardList) {
     fetch(`${this.baseUrl}/cards`, {
         headers: this.headers
       })
       .then(this.checkStatus)
-      .then((result) => cardList.renderCards(result))
+      .then(this.cardList = cardList)
+      .then((result) => this.cardList.renderCards(result))
       .catch(this.showError);
   }
 
@@ -37,8 +31,8 @@ export default class Api {
       })
       .then(this.checkStatus)
       .then((result) => {
-        profileName.textContent = result.name;
-        profileJob.textContent = result.about;
+        this.profileName.textContent = result.name;
+        this.profileJob.textContent = result.about;
         return result;
       })
       .catch(this.showError);
@@ -54,8 +48,8 @@ export default class Api {
       })
       .then(this.checkStatus)
       .then((result) => {
-        profileName.textContent = result.name;
-        profileJob.textContent = result.about;
+        this.profileName.textContent = result.name;
+        this.profileJob.textContent = result.about;
       })
       .catch(this.showError);
   }
@@ -64,7 +58,7 @@ export default class Api {
         headers: this.headers
       })
       .then(this.checkStatus)
-      .then((result) => profilePhoto.style.backgroundImage = `url(${result.avatar})`)
+      .then((result) => this.profilePhoto.style.backgroundImage = `url(${result.avatar})`)
       .catch(this.showError);
   }
   setAvatar(avatar) {
@@ -76,7 +70,7 @@ export default class Api {
         })
       })
       .then(this.checkStatus)
-      .then((result) => profilePhoto.style.backgroundImage = `url(${result.avatar})`)
+      .then((result) => this.profilePhoto.style.backgroundImage = `url(${result.avatar})`)
       .catch(this.showError);
   }
   addCard(name, link) {
@@ -89,7 +83,7 @@ export default class Api {
         })
       })
       .then(this.checkStatus)
-      .then((result) => cardList.addCard({
+      .then((result) => this.cardList.addCard({
         name: result.name,
         link: result.link,
         ownerId: result.owner._id,

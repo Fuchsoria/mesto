@@ -8,11 +8,6 @@ const popupAvatarContent = document.querySelector('.popup_avatar');
 const avatarForm = document.forms.avatar;
 const avatarInputLink = avatarForm.elements.link;
 
-/* PopupAvatar
- * openPopup отправка ноды на открытие popup и препроверка полей
- * check проверка полей
- * afterSubmit действия после отправки формы
- */
 export default class PopupAvatar extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);
@@ -21,7 +16,6 @@ export default class PopupAvatar extends Popup {
   }
 
   openPopup() {
-    console.log(this);
     this.check();
     this.open(popupAvatarContent);
   }
@@ -58,12 +52,12 @@ export default class PopupAvatar extends Popup {
       .then(() => {
         button.setAttribute('disabled', true);
         button.classList.add('popup__button_disabled');
-        button.textContent = 'Сохранение...';
+        button.textContent = 'Saving...';
       })
       .then(() => GLOBAL.api.setAvatar(link.value))
       .then(() => GLOBAL.popupAvatar.close(event))
       .then(() => avatarForm.reset())
       .catch((err) => console.error(err))
-      .finally(() => button.textContent = 'Сохранить');
+      .finally(() => button.textContent = 'Save');
   }
 }

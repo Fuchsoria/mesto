@@ -9,11 +9,6 @@ const galleryForm = document.forms.new;
 const galleryInputName = galleryForm.elements.name;
 const galleryInputLink = galleryForm.elements.link;
 
-/* PopupGallery
- * openPopup отправка ноды на открытие popup и препроверка полей
- * check проверка полей
- * afterSubmit действия после отправки формы
- */
 export default class PopupGallery extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);
@@ -68,7 +63,7 @@ export default class PopupGallery extends Popup {
       .then(() => {
         button.setAttribute('disabled', true);
         button.classList.add('popup__button_disabled');
-        button.textContent = 'Сохранение...';
+        button.textContent = 'Saving...';
       })
       .then(() => GLOBAL.api.addCard(name.value, link.value))
       .then(() => this.close(event))

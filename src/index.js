@@ -10,7 +10,6 @@ import {
   GLOBAL
 } from './Global';
 
-// Формы, инпуты и прочие элементы
 const serverUrl = NODE_ENV === 'development' ? 'http://praktikum.tk/cohort3' : 'https://praktikum.tk/cohort3';
 const placesList = document.querySelector('.places-list');
 const profileName = document.querySelector('.user-info__name');
@@ -29,7 +28,6 @@ GLOBAL.api = new Api({
   photo: profilePhoto
 });
 
-// Старт приложения после загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
   const startPromise = Promise.resolve();
   startPromise

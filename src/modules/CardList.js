@@ -3,10 +3,6 @@ import {
   GLOBAL
 } from '../Global';
 
-/* CardList
- * addCard добавляет карточку в массив и отправляет в рендер
- * renderCards проходит по всем карточкам из массива и отправляет их в рендер
- */
 export default class CardList {
   constructor(container) {
     this.container = container;

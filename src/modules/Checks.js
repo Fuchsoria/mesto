@@ -3,12 +3,6 @@ const popupProfileContent = document.querySelector('.popup_edit-profile');
 const popupImage = document.querySelector('.popup_image');
 const popupAvatarContent = document.querySelector('.popup_avatar');
 
-/* Checks
- * currentNode получает название popup по событию и возвращает ноду
- * textField проверяет поле ввода на корректность и возвращает результат и ошибку
- * urlField проверяет поле ввода на наличие ссылки и возвращает результат и ошибку
- * formUrl проверка является ли строка ссылкой
- */
 export default class Checks {
   static currentNode(event) {
     const popupAttribute = event.target.closest('.popup').getAttribute('popupname');
@@ -24,8 +18,8 @@ export default class Checks {
 
   static textField(field) {
     const MESSAGE = {
-      REQUIRED: 'Это обязательное поле',
-      LENGTH: 'Должно быть от 2 до 300 символов'
+      REQUIRED: 'This is a required field',
+      LENGTH: 'Must be 2 to 300 characters'
     };
     const empty = field.value.length === 0;
     const checkLength = field.value.length < 2 || field.value.length > 300;
@@ -38,7 +32,7 @@ export default class Checks {
 
   static urlField(field) {
     const MESSAGE = {
-      LINK: 'Здесь должна быть ссылка'
+      LINK: 'There should be a link'
     };
     const urlCheck = Checks.formUrl(field.value);
 

@@ -2,11 +2,7 @@ import {
   handlers
 } from '../handlers';
 import Checks from './Checks';
-/* Popup
- * open открытие popup по ноде и запуск обработчиков
- * close закрытие popup по ноде и удаление обработчиков
- * errorContainer возвращает контейнер для отображения ошибок
- */
+
 export default class Popup {
   open(popupNode) {
     const popupName = popupNode.getAttribute('popupname');

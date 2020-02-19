@@ -5,11 +5,6 @@ import {
 const cardTemplate = document.querySelector('#card-template');
 const placesList = document.querySelector('.places-list');
 
-/* Card
- * like изменяет состояние класса после нажатия и отправляет запрос на обновление на API сервер
- * remove удаляет карточку из API сервера
- * create создаёт элемент карточки и возвращает его
- */
 export default class Card {
   constructor(obj, container = placesList) {
     this.name = obj.name;

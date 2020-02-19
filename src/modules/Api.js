@@ -8,7 +8,7 @@ export default class Api {
   }
 
   checkStatus(res) {
-    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
   }
 
   showError(err) {

@@ -1,32 +1,32 @@
-# Mesto [RU Lang] v1.0.0
-Галерея с изображениями через работу с API.
+# Mesto v1.1.0
+Gallery with images through work with API.
 
-### Функционал:
-Рендеринг карточек с сервера
-Открытие popup изображений/редактирований/добавлений
-Изменение аватара/имени/профессии
-Добавление/Удаление своих/Лайки карточек
-Различные валидации введенных данных и ссылок
+### Functional:
+Rendering cards from the server
+Opening popup images / edits / additions
+Change avatar / name / profession
+Adding / Removing your / Likes cards
+Various validations of entered data and links
 
-Демо: [Кликабельная ссылка](https://fuchsoria.github.io//mesto/)
+Demo: [Clickable Link](https://mesto.fuchsoria.dev)
 
-## Установка
-Для установки необходимо наличие установленного nodejs и npm.
+## Installation
+To install, you must have installed nodejs and npm.
 
-Сохраните проект у себя на компьютере:
+Save the project to your computer:
 
     git clone https://github.com/Fuchsoria/mesto.git
 
-В корне проекта через консоль/терминал запустите команду:
+In the root of the project, through the console / terminal, run the command:
 
     npm install
-### После успешной установки станут доступны команды: 
-Поднятие локального сервера с режимом разработки:
+### After successful installation, the commands become available.: 
+Raising a local server with development mode:
 
     npm run dev
-Сборка продакшн версии:
+Production Version Build:
 
     npm run build
-  Деплой билда на gh-pages:
+  Deploy build on gh-pages:
   
     npm run deploy

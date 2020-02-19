@@ -1,4 +1,3 @@
-// Обработчики
 import Card from './modules/Card';
 import Popup from './modules/Popup';
 import PopupGallery from './modules/PopupGallery';
@@ -20,17 +19,14 @@ const popupImage = new PopupImage();
 const popupAvatar = new PopupAvatar();
 
 const handlers = {
-  // Добавление обработчика кнопки закрытия popup
   addPopupClose(popupNode) {
     const closeButton = popupNode.querySelector('.popup__close');
     closeButton.addEventListener('click', popup.close);
   },
-  // Удаление обработчика кнопки закрытия popup
   removePopupClose(popupNode) {
     const closeButton = popupNode.querySelector('.popup__close');
     closeButton.removeEventListener('click', popup.close);
   },
-  // Обработчик лайков
   likeHandler() {
     placesList.addEventListener('click', (event) => {
       if (event.target.classList.contains('place-card__like-icon')) {
@@ -38,37 +34,30 @@ const handlers = {
       }
     });
   },
-  // Добавление обработчиков формы галереи
   addGalleryHandlers() {
     galleryForm.addEventListener('submit', popupGallery.afterSubmit);
     galleryForm.addEventListener('input', popupGallery.check);
   },
-  // Удаление обработчиков формы галереи
   removeGalleryHandlers() {
     galleryForm.removeEventListener('submit', popupGallery.afterSubmit);
     galleryForm.removeEventListener('input', popupGallery.check);
   },
-  // Добавление обработчиков формы профиля
   addProfileHandlers() {
     profileForm.addEventListener('submit', popupProfile.afterSubmit);
     profileForm.addEventListener('input', popupProfile.check);
   },
-  // Удаление обработчиков формы профиля
   removeProfileHandlers() {
     profileForm.removeEventListener('submit', popupProfile.afterSubmit);
     profileForm.removeEventListener('input', popupProfile.check);
   },
-  // Добавление обработчиков формы профиля
   addAvatarHandlers() {
     avatarForm.addEventListener('submit', popupAvatar.afterSubmit);
     avatarForm.addEventListener('input', popupAvatar.check);
   },
-  // Удаление обработчиков формы профиля
   removeAvatarHandlers() {
     avatarForm.removeEventListener('submit', popupAvatar.afterSubmit);
     avatarForm.removeEventListener('input', popupAvatar.check);
   },
-  // Обработчик для удаления карточки из DOM и API
   removeHandler() {
     placesList.addEventListener('click', (event) => {
       if (event.target.classList.contains('place-card__delete-icon')) {
@@ -88,7 +77,6 @@ const handlers = {
       }
     });
   },
-  // Обработчик открытия изображения и задачи ему src изображения
   imageOpenHandler() {
     placesList.addEventListener('click', (event) => {
       if (event.target.classList.contains('place-card__image')) {
@@ -98,7 +86,6 @@ const handlers = {
       }
     });
   },
-  // Стартовые обработчики
   start() {
     popupGalleryButton.addEventListener('click', popupGallery.openPopup);
     popupProfileButton.addEventListener('click', popupProfile.openPopup);

@@ -11,13 +11,6 @@ const profileForm = document.forms.profile;
 const profileInputName = profileForm.elements.profileName;
 const profileInputJob = profileForm.elements.profileJob;
 
-/* PopupProfile
- * openPopup отправка ноды на открытие popup и препроверка полей
- * setInputs вставка текущих значений в поля ввода
- * update обновление текущих значений из полей ввода
- * check проверка полей
- * afterSubmit действия после отправки формы
- */
 export default class PopupProfile extends Popup {
   constructor(open, close, errorContainer) {
     super(open, close, errorContainer);

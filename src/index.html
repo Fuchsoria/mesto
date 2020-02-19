@@ -31,15 +31,15 @@
     <div class="popup popup_add-content" popupname="popupGalleryContent">
       <div class="popup__content">
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
-        <h3 class="popup__title">Новое место</h3>
+        <h3 class="popup__title">New place</h3>
         <form class="popup__form" name="new">
           <label class="label">
-            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Название">
+            <input type="text" name="name" class="popup__input popup__input_type_name" placeholder="Title">
             <span class="input__error" aria-live="polite"></span>
           </label>
           <label class="label">
             <input type="text" name="link" class="popup__input popup__input_type_link-url"
-              placeholder="Ссылка на картинку">
+              placeholder="Image link">
             <span class="input__error" aria-live="polite"></span>
           </label>
           <button type="submit" class="button popup__button">+</button>
@@ -50,17 +50,17 @@
     <div class="popup popup_edit-profile" popupname="popupProfileContent">
       <div class="popup__content">
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
-        <h3 class="popup__title">Редактировать профиль</h3>
+        <h3 class="popup__title">Edit profile</h3>
         <form class="popup__form" name="profile">
           <label class="label">
-            <input type="text" name="profileName" class="popup__input popup__input_type_name" placeholder="Имя">
+            <input type="text" name="profileName" class="popup__input popup__input_type_name" placeholder="Name">
             <span class="input__error" aria-live="polite"></span>
           </label>
           <label class="label">
-            <input type="text" name="profileJob" class="popup__input popup__input_type_name" placeholder="О себе">
+            <input type="text" name="profileJob" class="popup__input popup__input_type_name" placeholder="About you">
             <span class="input__error" aria-live="polite"></span>
           </label>
-          <button type="submit" class="button popup__button">Сохранить</button>
+          <button type="submit" class="button popup__button">Save</button>
         </form>
       </div>
     </div>
@@ -75,19 +75,18 @@
     <div class="popup popup_avatar" popupname="popupAvatarContent">
       <div class="popup__content">
         <img src="<%=require('./images/close.svg')%>" alt="" class="popup__close">
-        <h3 class="popup__title">Обновить Аватар</h3>
+        <h3 class="popup__title">Update Avatar</h3>
         <form class="popup__form" name="avatar">
           <label class="label">
-            <input type="text" name="link" class="popup__input popup__input_type_name" placeholder="Ссылка на аватар">
+            <input type="text" name="link" class="popup__input popup__input_type_name" placeholder="Avatar link">
             <span class="input__error" aria-live="polite"></span>
           </label>
-          <button type="submit" class="button popup__button">Сохранить</button>
+          <button type="submit" class="button popup__button">Save</button>
         </form>
       </div>
     </div>
 
   </div>
-  <!-- Пример вёрстки карточки: -->
   <template id="card-template">
     <div class="place-card">
       <div class="place-card__image">
@@ -102,7 +101,7 @@
       </div>
     </div>
   </template>
-  <!-- конец примера. -->
+
   <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
 </body>
 
